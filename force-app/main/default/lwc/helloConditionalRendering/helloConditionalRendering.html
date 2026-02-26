@@ -1,0 +1,6 @@
+<template>
+    <div class="box">
+      <lightning-input type="checkbox" label="show details" onchange={handleChange}></lightning-input>
+      <template lwc:if={areDetailsVisible} >These are the details.</template>
+    </div>
+</template>

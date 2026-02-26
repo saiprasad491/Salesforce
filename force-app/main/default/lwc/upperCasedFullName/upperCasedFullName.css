@@ -1,0 +1,25 @@
+.center{
+  padding:10px 20px;
+  background-color: honeydew;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.left{
+  border:1px solid;
+  padding:10px 20px;
+  height:150px;
+  width:40vw;
+  
+}
+.right{
+  border:1px solid;
+  padding:10px 20px;
+  height:150px;
+  width:40vw;
+
+}
+.bdr{
+  border: 1px solid;
+  padding:10px;
+}

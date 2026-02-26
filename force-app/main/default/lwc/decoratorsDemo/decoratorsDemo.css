@@ -1,0 +1,25 @@
+.bdr{
+  border:1px solid navy;
+  padding:10px 20px;
+  background-color: aliceblue;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.left,.right,.center{
+  height:200px;
+  width:300px;
+  display: inline-block;
+  padding:10px;
+
+}
+.left{
+  border:1px solid rgb(239, 117, 23);
+}
+.center{
+  border:1px solid rgb(150, 243, 243);
+  width:300px;
+}
+.right{
+  border:1px solid rgb(63, 239, 23);
+}

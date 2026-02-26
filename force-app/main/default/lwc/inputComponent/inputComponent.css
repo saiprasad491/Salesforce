@@ -1,0 +1,7 @@
+.bdr{
+  border:1px solid;
+  padding:10px 20px;
+  background-color: azure;
+  color:navy;
+  align-items: center;
+}

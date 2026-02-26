@@ -1,0 +1,13 @@
+<template>
+    <div class="bdr">
+      <div class="center">
+      <div class="left">
+        <lightning-input label="First Name :" name="fname" placeholder="Enter First Name" onchange={handleChange} ></lightning-input>
+      </div>
+      <div class="right">
+        <lightning-input label="Last Name :" name="lname" placeholder="Enter Last Name" onchange={handleChange} ></lightning-input>
+      </div>
+    </div>
+      <p>Full Name : <strong> {upperCasedFullName} </strong></p>
+    </div>
+</template>

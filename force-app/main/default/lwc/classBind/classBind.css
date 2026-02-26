@@ -1,0 +1,10 @@
+.bdr{
+  border:1px solid navy;
+  padding:10px;
+}
+.bg{
+  background-color: yellow;
+}
+.clr{
+  color: rgb(16, 167, 243);
+}

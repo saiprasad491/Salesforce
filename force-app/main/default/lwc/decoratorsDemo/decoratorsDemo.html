@@ -1,0 +1,31 @@
+<template>
+    <div class="bdr">
+      <div class="left">
+        <h2>@api</h2>
+        <c-api-demo></c-api-demo>
+        <c-api-demo message="Hello, User!"></c-api-demo>
+        <c-api-demo message="Hello, Sai!"></c-api-demo>
+      </div>
+      <div class="right">
+        <h2>@track</h2>
+        <lightning-input
+          label="Enter an item name"
+          value={item}
+          onchange={handleChange}
+        ></lightning-input>
+        <lightning-button
+          label="Add Item"
+          onclick={btnclick}
+        ></lightning-button>
+
+        <!-- Render the items -->
+        <template if:true={itemList}>
+          <ul class="slds-m-top_medium">
+            <template for:each={itemList} for:item="it">
+              <li key={it}> {it}</li>
+            </template>
+          </ul>
+        </template>
+      </div>
+    </div>
+</template>

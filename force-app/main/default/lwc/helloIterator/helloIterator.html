@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="helloIterator" icon-name="custom:custom14" >
+      <ol class="slds-list_ordered">
+        <template iterator:it={contacts} >
+          <div key={it.value.id} lwc:if={it.first} class="list-first"></div>
+          <li key={it.value.id}>{it.value.name},{it.value.role}</li>
+          <div key={it.value.id}  lwc:if={it.last} class="list-last"></div>
+        </template>
+      </ol>
+    </lightning-card>
+</template>
