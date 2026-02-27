@@ -8,6 +8,8 @@
 .localdevserver/
 deploy-options.json
 
+veer_the_developer.txt
+
 # LWC VSCode autocomplete
 **/lwc/jsconfig.json
 
