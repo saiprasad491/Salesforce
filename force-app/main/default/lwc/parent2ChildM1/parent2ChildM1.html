@@ -1,0 +1,13 @@
+<template>
+    <div>
+      <h2>Method 1 using slot</h2>
+      <div style="border:1px solid red;padding:10px;">
+        Parent Component
+        <lightning-input label="Enter some text" onchange={handleChange} ></lightning-input>
+        <lightning-button label="Send Data To Child" variant="brand" onclick={handleClick} ></lightning-button>
+        <c-child-m1>
+         Data from Parent component :  {data2}
+        </c-child-m1>
+      </div>
+    </div>
+</template>
