@@ -2,7 +2,7 @@ import { LightningElement } from 'lwc';
 
 export default class MultipleEventListeners extends LightningElement {
 
-  eventHandlers={
+  obj={
     click:this.handleClick,
     mouseover:this.handleMouseOver
   }
