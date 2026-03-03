@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="reactivity of Arrays" icon-name="standard:task2">
+      <lightning-input label="Item" onchange={handleChange} ></lightning-input>
+      <lightning-button label="Add Item" onclick={addItemToList} ></lightning-button>
+       <ol>
+        <template iterator:it={arr}>
+            <li key={it.value}>
+                {it.value}
+            </li>
+        </template>
+    </ol>
+    </lightning-card>
+</template>
