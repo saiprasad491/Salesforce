@@ -1,0 +1,260 @@
+<template>
+    <lightning-card title="Student Details" icon-name="standard:brand">
+        <lightning-button variant="neutral" label="Add New Student" onclick={handleAddClick}></lightning-button>
+        
+        <!-- edit modal start -->
+        <template lwc:if={editModal} >
+            <section class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">
+                            Edit Student Details
+                        </h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+
+                        <lightning-input value={stdObj.name} name="name" label="Name" onchange={handleInputChange}  ></lightning-input>
+                        <lightning-input value={stdObj.email} name="email" label="Email" type="email" onchange={handleInputChange}  ></lightning-input>
+                        <lightning-input value={stdObj.age} name="age" label="Age" type="number" onchange={handleInputChange} ></lightning-input>
+                        <lightning-input value={stdObj.entranceScore} name="entranceScore" label="Entrance Score" required type="number" onchange={handleInputChange}  ></lightning-input>
+                        <lightning-input value={stdObj.address} name="address" label="Address" onchange={handleInputChange} ></lightning-input>
+                        <lightning-input 
+                            type="checkbox"
+                            label="Enrolled Full Time"
+                            onchange={handleFullTimaeChange}
+                            
+                        ></lightning-input>
+                        <template lwc:if={hasSkills}>
+                        <lightning-checkbox-group
+                            label="Salesforce Skill Set"
+                            options={salesforceSkillSetOptions}
+                            value={stdObj.salesforceSkillSet}
+                            onchange={handleSkillSetChange}
+                            >
+                        </lightning-checkbox-group>
+                        </template>
+                        
+
+                        <lightning-combobox
+                            label="Select Stream"
+                            options={streamOptions}
+                            value={stdObj.stream}
+                            onchange={handleStreamChange}
+                            >
+                        </lightning-combobox>
+                        <lightning-combobox
+                        label="Select Class"
+                        options={classes}
+                        value={stdObj.class}
+                        name="class"
+                        onchange={handleInputChange}
+                        ></lightning-combobox>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Update" variant="neutral" onclick={handleUpdation} ></lightning-button>
+                        <lightning-button label="Close" variant="neutral" onclick={closeEditModal} ></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <!-- edit modal end -->
+
+        <!-- view modal start -->
+        <template lwc:if={viewModal} >
+            <section class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">
+                            View Student Details
+                        </h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+
+                        <lightning-input value={stdObj.name} name="name" label="Name" onchange={handleInputChange} disabled ></lightning-input>
+                        <lightning-input value={stdObj.email} name="email" label="Email" type="email" onchange={handleInputChange} disabled ></lightning-input>
+                        <lightning-input value={stdObj.age} name="age" label="Age" type="number" onchange={handleInputChange} disabled></lightning-input>
+                        <lightning-input value={stdObj.entranceScore} name="entranceScore" label="Entrance Score" required type="number" onchange={handleInputChange} disabled ></lightning-input>
+                        <lightning-input value={stdObj.address} name="address" label="Address" onchange={handleInputChange} disabled></lightning-input>
+                        <lightning-input 
+                            type="checkbox"
+                            label="Enrolled Full Time"
+                            onchange={handleFullTimaeChange}
+                            disabled
+                        ></lightning-input>
+                        <template lwc:if={hasSkills}>
+                        <lightning-checkbox-group
+                            label="Salesforce Skill Set"
+                            options={salesforceSkillSetOptions}
+                            value={stdObj.salesforceSkillSet}
+                            onchange={handleSkillSetChange}
+                            disabled>
+                        </lightning-checkbox-group>
+                        </template>
+                        <template lwc:else>
+                        <lightning-checkbox-group
+                            label="Salesforce Skill Set"
+                            options={salesforceSkillSetOptions}
+                            value={salesforceSkillSetOptions}
+                            onchange={handleSkillSetChange}
+                            disabled>
+                        </lightning-checkbox-group>
+                        </template>
+                        <lightning-combobox
+                            label="Select Stream"
+                            options={streamOptions}
+                            value={stdObj.stream}
+                            onchange={handleStreamChange}
+                            disabled>
+                        </lightning-combobox>
+
+                        <lightning-combobox
+                        label="Select Class"
+                        options={classes}
+                        value={stdObj.class}
+                        name="class"
+                        onchange={handleInputChange}
+                        disabled
+                        ></lightning-combobox>
+
+
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <!-- <lightning-button label="Save" variant="neutral" onclick={handleSaveClick} ></lightning-button> -->
+                        <lightning-button label="Close" variant="neutral" onclick={closeViewModal} ></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <!-- view modal close -->
+
+
+        <!-- Add Modal start -->
+
+        <template lwc:if={showModal} >
+            <section class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 class="slds-text-heading_medium">
+                            Add New Student
+                        </h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium">
+
+                        <lightning-input name="name" label="Name" onchange={handleInputChange} ></lightning-input>
+                        <lightning-input name="email" label="Email" type="email" onchange={handleInputChange} ></lightning-input>
+                        <lightning-input name="age" label="Age" type="number" onchange={handleInputChange} ></lightning-input>
+                        <lightning-input name="entranceScore" label="Entrance Score" required type="number" onchange={handleInputChange} ></lightning-input>
+                        <lightning-input name="address" label="Address" onchange={handleInputChange}></lightning-input>
+                        <lightning-input 
+                            type="checkbox"
+                            label="Enrolled Full Time"
+                            onchange={handleFullTimaeChange}
+                        ></lightning-input>
+                        
+                        <lightning-checkbox-group
+                            label="Salesforce Skill Set"
+                            options={salesforceSkillSetOptions}
+                            value={salesforceSkillSetOptions}
+                            onchange={handleSkillSetChange}>
+                        </lightning-checkbox-group>
+
+                        <lightning-combobox
+                        label="Select Stream"
+                        options={streamOptions}
+                        onchange={handleStreamChange}
+                        name="stream"
+                        >
+                        </lightning-combobox>
+
+                        <lightning-combobox
+                        label="Select Class"
+                        options={classes}
+                        value={stdObj.class}
+                        name="class"
+                        onchange={handleInputChange}
+                        ></lightning-combobox>
+
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning-button label="Save" variant="neutral" onclick={handleSaveClick} ></lightning-button>
+                        <lightning-button label="Close" variant="neutral" onclick={closeModal} ></lightning-button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+
+        <!-- Add Modal close -->
+
+
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered" cellpadding="10px">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Age</th>
+                    <th>Created Date</th>
+                    <th>Entrance Score</th>
+                    <th>Enrolled Full Time</th>
+                    <th>Salesforce Skill Set</th>
+                    <th>Stream</th>
+                    <th>Class</th>
+                    <th>Fees</th>
+                    <th>CRUD Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={students} for:item="st" for:index="idx">
+                    <tr key={st.Id}>
+                        <td>{st.Name__c}</td>
+                        <td>{st.Email__c}</td>
+                        <td>{st.Age__c}</td>
+                        <td>{st.CreatedDate}</td>
+                        <td>{st.Entrance_Score__c}</td>
+                        <td>{st.Enrolled_Full_Time__c}</td>
+                        <td>{st.Salesforce_Skill_Set__c}</td>
+                        <td>{st.Stream__c}</td>
+
+                        <template lwc:if={st.Class__r}>
+                            <td>{st.Class__r.Name}</td>
+                            <td>{st.Class__r.Fees__c}</td>
+                        </template>
+                        <template if:false={st.Class__r} >
+                            <td>NA</td>
+                            <td>NA</td>
+                        </template>
+
+                        <td>
+                            <lightning-button 
+                                variant="brand" 
+                                label="view" 
+                                icon-name="action:preview"
+                                data-id={st.Id}
+                                onclick={handleViewClick}>
+                            </lightning-button>
+
+                            <lightning-button 
+                                variant="brand" 
+                                label="edit" 
+                                icon-name="action:edit"
+                                data-id={st.Id}
+                                onclick={handleEditClick}>
+                            </lightning-button>
+
+                            <lightning-button 
+                                variant="brand" 
+                                label="delete" 
+                                icon-name="action:delete"
+                                data-id={st.Id}
+                                onclick={handleDeleteClick}>
+                            </lightning-button>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        
+    </lightning-card>
+</template>
